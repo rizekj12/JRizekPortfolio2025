@@ -1,0 +1,348 @@
+:root {
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --accent: #2aa77a;
+  --muted: #6e6e6e;
+  --radius: 12px;
+  --card-bg: rgba(255, 255, 255, 0.78);
+  --text: #0b0b0b;
+  --max-width: 1200px;
+  --gap: 24px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0;
+  color: var(--text);
+  background: #f7f7f8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* layout */
+.layout {
+  max-width: var(--max-width);
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--gap);
+  padding: 0 16px;
+  align-items: start;
+}
+
+/* Reset the layout padding for full-width hero */
+.layout {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* hero */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/imgs/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 48px;
+  min-height: 100vh;
+}
+
+.divider {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25%;
+  height: 100vh;
+  /* background: #560256; */
+  background: white;
+  z-index: 1;
+  clip-path: path(
+    "M-50,0 L100,0 L100,100vh L-50,100vh C-30,75 -60,50 -30,25 C0,0 -50,0 -50,0"
+  );
+
+  margin: 0;
+  padding: 0;
+  border-left: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Ensure the hero section and grid maintain their existing z-index */
+.hero-bg {
+  z-index: 0;
+}
+
+.hero-grid {
+  z-index: 2;
+  position: relative;
+}
+
+/* Adjust content positioning relative to divider */
+.hero-left {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  max-width: 50%;
+}
+
+.hero-right {
+  position: relative;
+  z-index: 3;
+  margin-right: 5%; /* Pull content slightly into the white area */
+}
+
+/* right visuals */
+.hero-right {
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.visual-overlay {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+.shape {
+  position: absolute;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.28);
+}
+.shape.circle {
+  width: 80px;
+  height: 80px;
+  top: 0;
+  right: 10px;
+  border-radius: 50%;
+}
+.shape.square {
+  width: 110px;
+  height: 110px;
+  bottom: 8px;
+  right: 10px;
+}
+.portrait {
+  position: absolute;
+  left: -100px; /* Position on the white border */
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid white;
+  box-shadow: 0 10px 30px rgba(10, 10, 10, 0.2);
+  z-index: 3;
+}
+
+/* main column */
+.main-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* snapshot */
+.snapshot {
+  margin-top: 20px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.snapshot h2 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 160px;
+  gap: 12px;
+}
+.card {
+  min-height: 70px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--muted);
+}
+
+/* projects */
+.projects {
+  margin-top: 20px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.filters .pill {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 6px 10px;
+  background: transparent;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.pill.active {
+  background: var(--accent);
+  color: white;
+  border-color: transparent;
+}
+.project-grid {
+  display: flex;
+  gap: 12px;
+}
+.project-card {
+  flex: 1;
+  min-height: 120px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.7)
+  );
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* sidebar */
+.notes {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 24px auto;
+  background: var(--card-bg);
+  padding: 18px;
+  border-radius: 12px;
+  height: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.notes h3 {
+  margin-top: 0;
+}
+.notes-list {
+  padding-left: 18px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+  .notes {
+    order: 2;
+    margin-top: 12px;
+  }
+  .hero-grid {
+    padding: 28px;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .hero-right {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 1.6rem;
+  }
+  .hero-grid {
+    padding: 18px;
+  }
+  .snapshot-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-grid {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .divider {
+    display: none;
+  }
+
+  .hero-grid {
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .hero-right {
+    display: none;
+  }
+
+  .hero-left {
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    max-width: 60%;
+  }
+}
+
+.hero-name {
+  color: white;
+  font-size: 4.5rem;
+  margin: 0;
+  line-height: 1.1;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero-roles p {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 400;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
