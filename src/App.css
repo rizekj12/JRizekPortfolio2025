@@ -1,4 +1,6 @@
 :root {
+  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
   --bg-overlay: rgba(255, 255, 255, 0.85);
   --accent: #2aa77a;
   --muted: #6e6e6e;
@@ -7,8 +9,14 @@
   --text: #0b0b0b;
   --max-width: 1200px;
   --gap: 24px;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
+}
+
+/* apply globally */
+html,
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -24,8 +32,6 @@ body {
   margin: 0;
   color: var(--text);
   background: #f7f7f8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* layout */
@@ -67,36 +73,55 @@ body {
   z-index: 0;
 }
 
-.hero-grid {
+.hero-content {
   position: relative;
   z-index: 2;
+  padding: 48px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 48px;
-  min-height: 100vh;
+  max-width: 60%;
+}
+
+.hero-name {
+  color: white;
+  font-size: 4.5rem;
+  margin: 0;
+  line-height: 1.1;
+  font-weight: 600;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-left: 22%;
+  margin-top: 20vh;
+}
+
+.hero-intro {
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  font-weight: 500;
+  max-width: 600px;
+  margin: 2rem 0 0 10%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .divider {
   position: absolute;
   right: 0;
   top: 0;
-  width: 25%;
+  width: 35%; /* Increased from 25% */
   height: 100vh;
-  /* background: #560256; */
   background: white;
   z-index: 1;
   clip-path: path(
     "M-50,0 L100,0 L100,100vh L-50,100vh C-30,75 -60,50 -30,25 C0,0 -50,0 -50,0"
   );
-
   margin: 0;
   padding: 0;
   border-left: 3px solid white;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center; /* Changed from flex-start */
 }
 
 /* Ensure the hero section and grid maintain their existing z-index */
@@ -104,7 +129,7 @@ body {
   z-index: 0;
 }
 
-.hero-grid {
+.hero-content {
   z-index: 2;
   position: relative;
 }
@@ -124,6 +149,20 @@ body {
   position: relative;
   z-index: 3;
   margin-right: 5%; /* Pull content slightly into the white area */
+}
+
+.hero-roles p {
+  margin: 2;
+  margin-left: 1;
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 500;
+  background: linear-gradient(45deg, #4b6cb7 0%, #882a98 50%, #cf23cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: none;
 }
 
 /* right visuals */
@@ -272,7 +311,7 @@ body {
     order: 2;
     margin-top: 12px;
   }
-  .hero-grid {
+  .hero-content {
     padding: 28px;
     flex-direction: row;
     gap: 12px;
@@ -286,7 +325,7 @@ body {
   .hero-name {
     font-size: 1.6rem;
   }
-  .hero-grid {
+  .hero-content {
     padding: 18px;
   }
   .snapshot-grid {
@@ -302,7 +341,7 @@ body {
     display: none;
   }
 
-  .hero-grid {
+  .hero-content {
     flex-direction: column;
     padding: 24px;
   }
@@ -321,28 +360,4 @@ body {
     backdrop-filter: blur(8px);
     max-width: 60%;
   }
-}
-
-.hero-name {
-  color: white;
-  font-size: 4.5rem;
-  margin: 0;
-  line-height: 1.1;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.hero-roles {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.hero-roles p {
-  color: white;
-  font-size: 2rem;
-  margin: 0;
-  line-height: 1.4;
-  font-weight: 400;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
