@@ -3,6 +3,9 @@ import Hero from "./Components/Hero";
 import Snapshot from "./Components/Snapshot";
 import Projects from "./Components/Projects";
 import Sidebar from "./Components/Sidebar";
+import Skills from "./Components/Skills";
+import Experience from "./Components/Experience";
+import Contact from "./Components/Contact";
 import "./App.css";
 
 export default function App() {
@@ -14,10 +17,11 @@ export default function App() {
           <div className="content">
             <Snapshot />
             <Projects />
-            {/* add CaseStudies, Skills, Experience, Contact components here as they are created */}
+            <Skills />
+            <Experience />
+            <Contact />
           </div>
         </main>
-
         <Sidebar />
       </div>
     </div>

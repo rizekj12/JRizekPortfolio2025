@@ -11,17 +11,15 @@ export default function Sidebar() {
                 <li><strong>Accessibility:</strong> mobile-first, avoid autoplay media</li>
             </ol>
 
-            <div className="component-tree">
-                <h4>Component Tree</h4>
-                <pre>{`<Hero />
-<ContentSwitch />
-<Snapshot />
-<ProjectGrid />
-<CaseStudies />
-<Skills />
-<Experience />
-<Contact />`}</pre>
-            </div>
+            <nav className="component-tree" aria-label="Quick links">
+                <h4>Quick Links</h4>
+                <ul className="quick-links">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </aside>
     );
 }
