@@ -8,6 +8,7 @@ import Experience from "./Components/Experience";
 import Contact from "./Components/Contact";
 import AboutMe from "./Components/AboutMe";
 import FloatingScrollButton from "./Components/FloatingScrollButton";
+import TechStacksShowcase from "./Components/TechStacksShowCase";
 import "./App.css";
 
 export default function App() {
@@ -16,9 +17,10 @@ export default function App() {
       <div className="layout">
         <main className="main-column">
           <Hero />
-
           <AboutMe />
+          <TechStacksShowcase />
           <div className="content">
+
             <Snapshot />
             <Projects />
             <Skills />
