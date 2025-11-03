@@ -255,3 +255,217 @@
     text-shadow: none;
   }
 }
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* default state */
+.about {
+  position: relative;
+  min-height: 120vh; /* ⬆️ increased height so background fills more */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  isolation: isolate;
+}
+
+.about.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeSlideIn 0.9s ease forwards;
+}
+
+/* background image */
+.about .about-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/imgs/aboutMeImg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* nice subtle parallax effect */
+  z-index: -2;
+}
+
+/* soft overlay for readability */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: -1;
+}
+
+.about .about-inner {
+  position: relative;
+  width: min(1100px, 94%);
+  margin: 0 auto;
+  padding: 80px 0; /* ⬆️ adds more vertical breathing room */
+}
+
+/* frosted glass effect card */
+.about .about-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  padding: clamp(24px, 4vw, 42px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* hover lift */
+.about .about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* gradient heading */
+.about .about-card h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  background: linear-gradient(45deg, #4b6cb7 0%, #882a98 50%, #cf23cf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.about .about-card h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: linear-gradient(45deg, #4b6cb7 0%, #882a98 50%, #cf23cf 100%);
+}
+
+/* paragraph styling */
+.about .about-card p {
+  margin: 14px 0 0;
+  line-height: 1.8;
+  font-size: clamp(0.98rem, 1.4vw, 1.05rem);
+  color: #1a1a1a;
+}
+
+/* mobile tweaks */
+@media (max-width: 768px) {
+  .about {
+    min-height: 140vh; /* ⬆️ even taller on mobile */
+  }
+
+  .about .about-inner {
+    width: 92%;
+    padding: 60px 0;
+  }
+
+  .about .about-card {
+    padding: 22px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* Parallax-ready background */
+.about .about-bg {
+  will-change: transform;
+  transform: translateY(var(--bgShift, 0px));
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .about .about-bg {
+    transform: none !important;
+  }
+}
+
+/* ===== Floating glass scroll button ===== */
+.floating-scroll {
+  position: fixed;
+  left: 50%;
+  bottom: 18px; /* distance from bottom of screen */
+  transform: translateX(-50%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.floating-scroll.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Glassy circle button */
+.floating-scroll__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.floating-scroll__btn:hover {
+  transform: translateY(1px);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.floating-scroll__btn:active {
+  transform: translateY(3px) scale(0.98);
+}
+
+.floating-scroll__btn:focus-visible {
+  outline: 2px solid #66e0c2; /* accessible focus ring */
+  outline-offset: 3px;
+}
+
+/* Gentle pulse to draw attention */
+@keyframes arrowPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.85;
+  }
+}
+.floating-scroll__arrow {
+  animation: arrowPulse 1.8s ease-in-out infinite;
+}
+
+/* Tuck up a bit on very small screens */
+@media (max-width: 420px) {
+  .floating-scroll {
+    bottom: 14px;
+  }
+  .floating-scroll__btn {
+    width: 52px;
+    height: 52px;
+  }
+}

@@ -6,6 +6,8 @@ import Sidebar from "./Components/Sidebar";
 import Skills from "./Components/Skills";
 import Experience from "./Components/Experience";
 import Contact from "./Components/Contact";
+import AboutMe from "./Components/AboutMe";
+import FloatingScrollButton from "./Components/FloatingScrollButton";
 import "./App.css";
 
 export default function App() {
@@ -14,15 +16,19 @@ export default function App() {
       <div className="layout">
         <main className="main-column">
           <Hero />
+
+          <AboutMe />
           <div className="content">
             <Snapshot />
             <Projects />
             <Skills />
             <Experience />
             <Contact />
+
           </div>
         </main>
         <Sidebar />
+        <FloatingScrollButton />
       </div>
     </div>
   );
