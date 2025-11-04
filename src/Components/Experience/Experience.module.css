@@ -1,0 +1,222 @@
+.section {
+  background: #f7f8fb;
+  padding: 80px 0;
+}
+.inner {
+  width: min(1040px, 90%);
+  margin: 0 auto;
+}
+.title {
+  margin: 0 0 28px 0;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  text-align: center;
+}
+
+/* timeline layout */
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 32px; /* room for rail + nodes */
+}
+
+/* rail */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(
+    180deg,
+    var(--grad-start),
+    var(--grad-mid),
+    var(--grad-end)
+  );
+  opacity: 0.8;
+}
+
+/* item wrapper */
+.item {
+  position: relative;
+  margin: 18px 0 32px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.inView .item {
+  opacity: 1;
+  transform: none;
+}
+
+/* node (outer ring + inner dot) */
+.node {
+  position: absolute;
+  left: -4px;
+  top: 18px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  display: grid;
+  place-items: center;
+}
+.nodeInner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--grad-end),
+    var(--grad-mid),
+    var(--grad-start)
+  );
+  transform: scale(0.78);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+/* card */
+.card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(10, 10, 10, 0.06);
+  padding: 18px 18px 14px;
+}
+
+/* header row */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.hgroup {
+  min-width: 0;
+}
+.role {
+  margin: 0 0 4px;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  color: #232323;
+}
+.meta {
+  margin: 0;
+  color: #5a5f69;
+  font-size: 0.98rem;
+}
+.company {
+  background: linear-gradient(45deg, var(--grad-start), var(--grad-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* date pill */
+.dates {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  color: #2b2b2b;
+  background: rgba(136, 42, 152, 0.1);
+  border: 1px solid rgba(136, 42, 152, 0.25);
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(136, 42, 152, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* bullets */
+.bullets {
+  margin: 12px 0 0 0;
+  margin-top: 16px;
+  padding-left: 18px;
+}
+.bullets li {
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #2a2d34;
+}
+.bullets li::marker {
+  color: var(--grad-mid);
+}
+
+/* responsive */
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .dates {
+    align-self: flex-start;
+  }
+  .timeline {
+    padding-left: 28px;
+  }
+  .timeline::before {
+    left: 10px;
+  }
+  .node {
+    left: -6px;
+  }
+}
+
+.item:hover .nodeInner,
+.item:focus-within .nodeInner {
+  transform: scale(1);
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--grad-start),
+    var(--grad-mid),
+    var(--grad-end)
+  );
+  box-shadow: 0 0 0 6px rgba(136, 42, 152, 0.12), 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.item:hover .dates,
+.item:focus-within .dates {
+  transform: translateY(-1px);
+  background: linear-gradient(
+    45deg,
+    rgba(75, 108, 183, 0.14),
+    rgba(136, 42, 152, 0.18),
+    rgba(207, 35, 207, 0.14)
+  );
+  border-color: rgba(136, 42, 152, 0.35);
+  box-shadow: 0 8px 20px rgba(136, 42, 152, 0.18);
+}
+
+/* Make sure no list marker ever shows near the title area */
+.header,
+.hgroup,
+.role {
+  list-style: none;
+}
+.role::marker {
+  content: none;
+} /* defensive, in case some UA adds one */
+
+/* Give the header a touch more space from the left edge of the card */
+.header {
+  padding-left: 6px; /* was 0; gives breathing room next to the title */
+}
+
+/* If you want even more clearance, you can also indent just the role line */
+.role {
+  padding-left: 2px; /* tiny optical spacing so the title never touches the rail/marker edge */
+}
+
+.card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.item:hover .card,
+.item:focus-within .card {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(10, 10, 10, 0.1);
+}

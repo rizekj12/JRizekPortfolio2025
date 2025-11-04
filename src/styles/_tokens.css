@@ -1,0 +1,14 @@
+:root {
+  --grad-start: #4b6cb7;
+  --grad-mid: #882a98;
+  --grad-end: #cf23cf;
+  --bg: #0b0b0b;
+  --text: #1a1a1a;
+  --text-invert: #fff;
+  --radius: 14px;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.22);
+  --container: 1100px;
+  --bp-md: 980px;
+  --bp-sm: 560px;
+}
