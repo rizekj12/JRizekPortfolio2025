@@ -85,7 +85,7 @@ export default function Experience() {
     return (
         <section id="experience" ref={ref} className={`${styles.section} ${visible ? styles.inView : ""}`} aria-labelledby="exp-title">
             <div className={styles.inner}>
-                <h2 id="exp-title" className={`${styles.title} gradient-text`}>Professional Experience</h2>
+                <h2 id="exp-title" className={`${styles.title}`}>Professional Experience</h2>
 
                 <ol className={styles.timeline}>
                     {ROLES.map((r, idx) => (

@@ -4,6 +4,7 @@ import AboutMe from "./Components/AboutMe/AboutMe";
 import TechStacksShowcase from "./Components/TechStacks/TechStacksShowcase";
 import FloatingScrollButton from "./Components/FloatingScrollButton/FloatingScrollButton";
 import Experience from "./Components/Experience/Experience";
+import Contact from "./Components/Contact/Contact";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <AboutMe />
         <TechStacksShowcase />
         <Experience />
+        <Contact />
       </main>
       <FloatingScrollButton />
     </div>
