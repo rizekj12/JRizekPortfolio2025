@@ -1,57 +1,57 @@
-// /api/send-email.js — Vercel serverless (CommonJS, Node 20)
-module.exports.config = { runtime: "nodejs20.x" };
+// /api/send-email.js  (ESM, Node 20)
+export const config = { runtime: "nodejs20.x" };
 
 const REQUIRED_ENVS = ["RESEND_API_KEY", "FROM_EMAIL", "TO_EMAIL"];
 const ALLOW_ORIGIN = process.env.ALLOWED_ORIGIN; // optional
 
-function setHeaders(res) {
+function json(res, code, body) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   if (ALLOW_ORIGIN) {
     res.setHeader("Access-Control-Allow-Origin", ALLOW_ORIGIN);
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   }
+  res.status(code).end(JSON.stringify(body));
 }
 
-module.exports = async (req, res) => {
-  setHeaders(res);
-
-  if (req.method === "OPTIONS") return res.status(204).end();
-  if (req.method !== "POST")
-    return res.status(405).end(JSON.stringify({ error: "METHOD_NOT_ALLOWED" }));
-
+export default async function handler(req, res) {
   try {
+    if (req.method === "OPTIONS") return json(res, 204, {});
+    if (req.method !== "POST")
+      return json(res, 405, { error: "METHOD_NOT_ALLOWED" });
+
     const missing = REQUIRED_ENVS.filter((k) => !process.env[k]);
-    if (missing.length) {
-      return res
-        .status(500)
-        .end(JSON.stringify({ error: "MISSING_ENV", missing }));
+    if (missing.length)
+      return json(res, 500, { error: "MISSING_ENV", missing });
+
+    let body;
+    try {
+      body =
+        typeof req.body === "string"
+          ? JSON.parse(req.body || "{}")
+          : req.body || {};
+    } catch (e) {
+      return json(res, 400, {
+        error: "BAD_JSON",
+        detail: String(e?.message || e),
+      });
     }
 
-    const body =
-      typeof req.body === "string"
-        ? JSON.parse(req.body || "{}")
-        : req.body || {};
     const { name, email, subject, message, botField } = body;
 
     if (botField)
-      return res
-        .status(200)
-        .end(JSON.stringify({ ok: true, skipped: true, reason: "honeypot" }));
+      return json(res, 200, { ok: true, skipped: true, reason: "honeypot" });
+
     if (!name || !email || !subject || !message) {
-      return res
-        .status(400)
-        .end(
-          JSON.stringify({
-            error: "MISSING_FIELDS",
-            fields: {
-              name: !!name,
-              email: !!email,
-              subject: !!subject,
-              message: !!message,
-            },
-          })
-        );
+      return json(res, 400, {
+        error: "MISSING_FIELDS",
+        fields: {
+          name: !!name,
+          email: !!email,
+          subject: !!subject,
+          message: !!message,
+        },
+      });
     }
 
     const payload = {
@@ -71,31 +71,24 @@ module.exports = async (req, res) => {
       body: JSON.stringify(payload),
     });
 
-    const data = await r.json().catch(() => ({}));
+    let data = {};
+    try {
+      data = await r.json();
+    } catch {}
 
     if (!r.ok) {
-      return res
-        .status(502)
-        .end(
-          JSON.stringify({
-            error: "RESEND_FAILED",
-            status: r.status,
-            detail: data,
-          })
-        );
+      return json(res, 502, {
+        error: "RESEND_FAILED",
+        status: r.status,
+        detail: data,
+      });
     }
 
-    return res
-      .status(200)
-      .end(JSON.stringify({ ok: true, id: data.id || null }));
+    return json(res, 200, { ok: true, id: data.id || null });
   } catch (err) {
-    return res
-      .status(500)
-      .end(
-        JSON.stringify({
-          error: "SERVER_ERROR",
-          message: String(err?.message || err),
-        })
-      );
+    return json(res, 500, {
+      error: "SERVER_ERROR",
+      message: String(err?.message || err),
+    });
   }
-};
+}
