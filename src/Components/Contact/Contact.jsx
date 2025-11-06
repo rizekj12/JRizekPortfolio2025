@@ -8,6 +8,8 @@ export default function Contact() {
     const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
     async function onSubmit(e) {
+
+
         e.preventDefault();
         if (form.botField) return; // honeypot
 
@@ -25,6 +27,8 @@ export default function Contact() {
         } catch (err) {
             setStatus({ state: "error", message: "Something went wrong. Please try again or email me directly." });
         }
+
+
     }
 
     return (
