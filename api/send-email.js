@@ -1,8 +1,8 @@
-// /api/send-email.js  (ESM, Node 20)
-export const config = { runtime: "nodejs20.x" };
+// /api/send-email.js
+export const config = { runtime: "nodejs" };
 
 const REQUIRED_ENVS = ["RESEND_API_KEY", "FROM_EMAIL", "TO_EMAIL"];
-const ALLOW_ORIGIN = process.env.ALLOWED_ORIGIN; // optional
+const ALLOW_ORIGIN = process.env.ALLOWED_ORIGIN; // optional; omit for same-origin
 
 function json(res, code, body) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -41,7 +41,6 @@ export default async function handler(req, res) {
 
     if (botField)
       return json(res, 200, { ok: true, skipped: true, reason: "honeypot" });
-
     if (!name || !email || !subject || !message) {
       return json(res, 400, {
         error: "MISSING_FIELDS",
@@ -76,13 +75,12 @@ export default async function handler(req, res) {
       data = await r.json();
     } catch {}
 
-    if (!r.ok) {
+    if (!r.ok)
       return json(res, 502, {
         error: "RESEND_FAILED",
         status: r.status,
         detail: data,
       });
-    }
 
     return json(res, 200, { ok: true, id: data.id || null });
   } catch (err) {

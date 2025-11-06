@@ -1,5 +1,5 @@
-// /api/ping.js  (ESM)
-export const config = { runtime: "nodejs20.x" };
+// /api/ping.js
+export const config = { runtime: "nodejs" };
 
 export default async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
