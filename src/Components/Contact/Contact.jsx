@@ -32,7 +32,7 @@ export default function Contact() {
     }
 
     return (
-        <section id="contact" className={styles.section} aria-labelledby="contact-title">
+        <section id="contact" data-theme="light" className={styles.section} aria-labelledby="contact-title">
             <div className={styles.inner}>
                 <h2 id="contact-title" className={`${styles.title} gradient-text`}>Contact Me</h2>
                 <p className={styles.subtitle}>

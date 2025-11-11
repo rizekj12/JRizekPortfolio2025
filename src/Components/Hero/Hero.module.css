@@ -144,3 +144,201 @@
     padding: 0 20px;
   }
 }
+
+.topStats {
+  position: absolute;
+  top: 16px; /* distance from top of white divider */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: min(92%, 640px);
+  text-align: center;
+  z-index: 2;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statPrimary {
+  font-weight: 800;
+  font-size: 0.98rem;
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-size: 0.82rem;
+  color: #4a4f58;
+  margin-top: 2px;
+}
+
+/* small gradient dot between items */
+.sep {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    var(--grad-start),
+    var(--grad-mid),
+    var(--grad-end)
+  );
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .topStats {
+    top: 12px;
+    gap: 12px;
+    width: min(94%, 540px);
+  }
+  .statPrimary {
+    font-size: 0.95rem;
+  }
+  .statLabel {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Contact info row --- */
+.contactRow {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #2a2f36;
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.contactItem:hover {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.contactIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: currentColor; /* <- makes the SVG use the link color */
+}
+
+/* Make sure it looks clean on small screens */
+@media (max-width: 600px) {
+  .contactRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contactItem {
+    font-size: 0.9rem;
+    width: 90%;
+    justify-content: center;
+  }
+}
+
+.contactItem {
+  color: #2a2f36;
+}
+.contactItem:hover {
+  color: #2a2f36;
+} /* keep text solid on hover */
+
+.contactItem:hover .contactIcon {
+  fill: url(#heroIconGrad); /* gradient only on the icon */
+}
+
+.socialBtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.socialBtn svg {
+  width: 18px;
+  height: 18px;
+  fill: #4c5563; /* default neutral icon */
+  transition: fill 0.3s ease;
+}
+
+.socialBtn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Gradient icon on hover */
+.socialBtn:hover svg {
+  fill: url(#heroGrad);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.socialBtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.socialBtn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.socialSvg {
+  width: 18px;
+  height: 18px;
+}
+
+.iconPath {
+  fill: #4c5563;
+  transition: fill 0.3s ease;
+}
+
+/* Gradient on hover */
+.socialBtn:hover .iconPath {
+  fill: url(#gradIcon);
+}
+
+.scrollButton svg {
+  fill: #000; /* black arrow */
+}

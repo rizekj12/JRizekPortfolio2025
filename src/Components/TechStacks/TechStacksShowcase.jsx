@@ -71,7 +71,7 @@ export default function TechStacksShowcase() {
     ];
 
     return (
-        <section id="tech" ref={ref} className={`${styles.stack} ${visible ? styles.inView : ""}`} aria-labelledby="stack-title">
+        <section id="tech" data-theme="light" ref={ref} className={`${styles.stack} ${visible ? styles.inView : ""}`} aria-labelledby="stack-title">
             <div className={styles.inner}>
                 <div className={styles.header}>
                     <h2 id="stack-title" className={`${styles.title} gradient-text`}>Tech stacks</h2>

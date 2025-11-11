@@ -22,24 +22,173 @@ export default function Hero() {
             </div>
 
             <div className={`${styles.divider} ${styles.slideRight}`} aria-hidden="true">
+
+                {/* Gradient definition used for icon hovers */}
+                <svg width="0" height="0" style={{ position: "absolute" }}>
+                    <defs>
+                        <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                            <stop offset="50%" stopColor="var(--grad-mid,   #7f5af0)" />
+                            <stop offset="100%" stopColor="var(--grad-end,   #00bcd4)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div className={styles.topStats}>
+                    <div className={styles.stat}>
+                        <span className={`gradient-text ${styles.statPrimary}`}>5+ Years</span>
+                        <span className={styles.statLabel}>Experience</span>
+                    </div>
+
+                    <span className={styles.sep} />
+
+                    <div className={styles.stat}>
+                        <span className={`gradient-text ${styles.statPrimary}`}>Certified</span>
+                        <span className={styles.statLabel}>Scrum Master</span>
+                    </div>
+
+                    <span className={styles.sep} />
+
+                    <div className={styles.stat}>
+                        <span className={`gradient-text ${styles.statPrimary}`}>Secret</span>
+                        <span className={styles.statLabel}>Clearance</span>
+                    </div>
+                </div>
                 <img className={`${styles.portrait} ${styles.fadeItem}`} src="/imgs/photoJosh.jpg" alt="Portrait of Joshua Rizek" />
                 <p className={`${styles.heroIntro} ${styles.fadeItem} gradient-text`}>
                     I build seamless digital experiences — from beautiful, responsive front-end designs to automated CI/CD workflows — combining creativity, precision, and expert technical consulting.
                 </p>
                 <div className={`${styles.heroIcons} ${styles.fadeItem}`}>
-                    <a className={styles.iconBtn} href="https://www.linkedin.com/in/joshua-rizek" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zM6.5 6.75A1.75 1.75 0 1 1 6.5 3.25 1.75 1.75 0 0 1 6.5 6.75zM20 19h-3v-5.36c0-1.28-.03-2.92-1.78-2.92-1.78 0-2.06 1.39-2.06 2.83V19h-3V9h2.88v1.37h.04c.4-.76 1.38-1.56 2.85-1.56 3.05 0 3.61 2.01 3.61 4.62V19z" /></svg>
+                    <div className={styles.socials}>
+                        {/* --- LinkedIn --- */}
+                        <a
+                            href="https://linkedin.com/in/your-handle"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="LinkedIn"
+                            className={styles.socialBtn}
+                        >
+                            <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="gradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                                        <stop offset="50%" stopColor="var(--grad-mid, #7f5af0)" />
+                                        <stop offset="100%" stopColor="var(--grad-end, #00bcd4)" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    className={styles.iconPath}
+                                    d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3.5 9h3v12h-3V9zm7 0h2.9v1.7h.04c.4-.8 1.4-1.7 2.9-1.7 3.1 0 3.7 2 3.7 4.6V21h-3v-6.1c0-1.5 0-3.3-2-3.3-2 0-2.3 1.6-2.3 3.2V21h-3V9z"
+                                />
+                            </svg>
+                        </a>
+
+                        {/* --- GitHub --- */}
+                        <a
+                            href="https://github.com/your-handle"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="GitHub"
+                            className={styles.socialBtn}
+                        >
+                            <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="gradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                                        <stop offset="50%" stopColor="var(--grad-mid, #7f5af0)" />
+                                        <stop offset="100%" stopColor="var(--grad-end, #00bcd4)" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    className={styles.iconPath}
+                                    d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.4.8-4.1-1.6-4.1-1.6-.6-1.5-1.5-1.9-1.5-1.9-1.3-.9.1-.9.1-.9 1.4.1 2.1 1.5 2.1 1.5 1.2 2.1 3.2 1.5 4 .9.1-.9.5-1.5.9-1.8-2.7-.3-5.5-1.4-5.5-6.3 0-1.4.5-2.6 1.3-3.5-.1-.3-.6-1.7.1-3.5 0 0 1.1-.3 3.6 1.3a12.4 12.4 0 016.6 0c2.5-1.6 3.6-1.3 3.6-1.3.7 1.8.2 3.2.1 3.5.8.9 1.3 2.1 1.3 3.5 0 4.9-2.9 6-5.6 6.3.5.4 1 1.3 1 2.7v4c0 .4.2.7.8.6A12 12 0 0012 .5z"
+                                />
+                            </svg>
+                        </a>
+
+                        {/* --- Resume --- */}
+                        <a
+                            href="/Joshua_Rizek_Resume.pdf"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="Resume"
+                            className={styles.socialBtn}
+                        >
+                            <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="gradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                                        <stop offset="50%" stopColor="var(--grad-mid, #7f5af0)" />
+                                        <stop offset="100%" stopColor="var(--grad-end, #00bcd4)" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    className={styles.iconPath}
+                                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7h5l-5-5v5zM8 13h8v2H8v-2zm0 4h8v2H8v-2zM8 9h4v2H8V9z"
+                                />
+                            </svg>
+                        </a>
+
+                        {/* --- Email --- */}
+                        <a
+                            href="mailto:josh@example.com"
+                            aria-label="Email"
+                            className={styles.socialBtn}
+                        >
+                            <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="gradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                                        <stop offset="50%" stopColor="var(--grad-mid, #7f5af0)" />
+                                        <stop offset="100%" stopColor="var(--grad-end, #00bcd4)" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    className={styles.iconPath}
+                                    d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+
+                {/* --- Contact info row under socials --- */}
+                <div className={styles.contactRow}>
+                    <a href="tel:+12038508658" className={styles.contactItem}>
+                        <svg
+                            className={styles.contactIcon}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M6.6 10.8a15.6 15.6 0 006.6 6.6l2.2-2.2a1 1 0 011.1-.24 11.4 11.4 0 003.6.58 1 1 0 011 1v3.6a1 1 0 01-1 1A17.6 17.6 0 012 6a1 1 0 011-1h3.6a1 1 0 011 1 11.4 11.4 0 00.58 3.6 1 1 0 01-.24 1.1L6.6 10.8z" />
+                        </svg>
+                        <span>+1 (203) 850-8658</span>
                     </a>
-                    <a className={styles.iconBtn} href="#" aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.92.58.11.79-.25.79-.55 0-.27-.01-1.18-.02-2.14-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.16 1.18.92-.26 1.9-.39 2.88-.39s1.96.13 2.88.39c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.77.11 3.06.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.67.42.36.79 1.07.79 2.15 0 1.56-.01 2.81-.01 3.19 0 .31.21.67.8.55C20.71 21.39 24 17.08 24 12 24 5.65 18.85.5 12 .5z" /></svg>
-                    </a>
-                    <a className={styles.iconBtn} href="#" aria-label="Email">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 13.065 0 6V18h24V6L12 13.065zM12 11.394 24 4H0l12 7.394z" /></svg>
-                    </a>
-                    <a className={styles.iconBtn} href="#" aria-label="Resume">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM13 9V3.5L18.5 9H13z" /></svg>
+
+                    <a href="mailto:joshuarizek@gmail.com" className={styles.contactItem}>
+                        <svg
+                            className={styles.contactIcon}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        <span>joshuarizek@gmail.com</span>
                     </a>
                 </div>
+
+                <svg width="0" height="0" style={{ position: 'absolute' }}>
+                    <defs>
+                        <linearGradient id="heroIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
+                            <stop offset="50%" stopColor="var(--grad-mid,   #7f5af0)" />
+                            <stop offset="100%" stopColor="var(--grad-end,   #00bcd4)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+
             </div>
         </header>
     );
