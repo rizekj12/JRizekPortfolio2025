@@ -12,8 +12,13 @@ export default function Hero() {
     }, []);
 
     return (
-        <header ref={heroRef} className={`${styles.hero} ${inView ? styles.inView : ""}`} aria-label="Hero">
+        <header id="hero" ref={heroRef} className={`${styles.hero} ${inView ? styles.inView : ""}`} aria-label="Hero">
             <div className={styles.heroBg} aria-hidden />
+            <img
+                className={`${styles.portraitMobile} ${styles.fadeItem}`}
+                src="/imgs/photoJosh.jpg"
+                alt="Portrait of Joshua Rizek"
+            />
             <div className={styles.heroContent}>
                 <h1 className={`${styles.heroName} ${styles.fadeItem}`}>Joshua Rizek</h1>
                 <div className={`${styles.heroRoles} ${styles.fadeItem}`}>
@@ -62,7 +67,7 @@ export default function Hero() {
                     <div className={styles.socials}>
                         {/* --- LinkedIn --- */}
                         <a
-                            href="https://linkedin.com/in/your-handle"
+                            href="https://www.linkedin.com/in/joshua-rizek-1a6a28199/"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="LinkedIn"
@@ -85,7 +90,7 @@ export default function Hero() {
 
                         {/* --- GitHub --- */}
                         <a
-                            href="https://github.com/your-handle"
+                            href="https://github.com/rizekj12"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="GitHub"
@@ -108,10 +113,9 @@ export default function Hero() {
 
                         {/* --- Resume --- */}
                         <a
-                            href="/Joshua_Rizek_Resume.pdf"
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Resume"
+                            href="/resume/Joshua_Rizek_Resume.pdf"
+                            download="Joshua_Rizek_Resume.pdf"
+                            aria-label="Download Resume"
                             className={styles.socialBtn}
                         >
                             <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
@@ -129,26 +133,7 @@ export default function Hero() {
                             </svg>
                         </a>
 
-                        {/* --- Email --- */}
-                        <a
-                            href="mailto:josh@example.com"
-                            aria-label="Email"
-                            className={styles.socialBtn}
-                        >
-                            <svg viewBox="0 0 24 24" className={styles.socialSvg} aria-hidden="true">
-                                <defs>
-                                    <linearGradient id="gradIcon" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="var(--grad-start, #6a11cb)" />
-                                        <stop offset="50%" stopColor="var(--grad-mid, #7f5af0)" />
-                                        <stop offset="100%" stopColor="var(--grad-end, #00bcd4)" />
-                                    </linearGradient>
-                                </defs>
-                                <path
-                                    className={styles.iconPath}
-                                    d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                                />
-                            </svg>
-                        </a>
+
                     </div>
 
                 </div>

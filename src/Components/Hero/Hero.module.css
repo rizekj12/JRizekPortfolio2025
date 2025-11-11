@@ -342,3 +342,75 @@
 .scrollButton svg {
   fill: #000; /* black arrow */
 }
+
+/* Default: mobile portrait hidden on desktop/tablet */
+.portraitMobile {
+  display: block;
+  position: absolute;
+  top: 24px; /* was 18px */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 128px; /* a touch smaller = more breathing room */
+  height: 128px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+}
+
+.portrait {
+  display: none;
+}
+
+.heroContent {
+  position: relative;
+  padding-top: 180px; /* avatar (128) + border/shadow + gap ≈ 180 */
+  padding-bottom: 24px; /* give room before the divider */
+  text-align: center;
+}
+
+/* 2) Ensure divider starts lower so nothing overlaps */
+.divider {
+  margin-top: 12px; /* adds a small buffer below the name/roles */
+}
+
+/* Optional: tighten name spacing if it still feels low */
+.heroName {
+  margin-top: 0;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  /* Show the mobile portrait in the purple area and hide the divider portrait */
+  .portraitMobile {
+    display: block;
+    position: absolute;
+    top: 269px; /* was 18px */
+    left: 35%;
+    transform: translateX(-50%);
+    width: 128px; /* a touch smaller = more breathing room */
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: var(--shadow-md);
+    z-index: 3;
+  }
+  /* Hide the portrait that sits inside the white divider on mobile */
+  .portrait {
+    display: none;
+  }
+
+  .heroIntro {
+    margin-top: 10px;
+  }
+
+  p {
+    margin-top: -23px;
+  }
+  /* Give the name block space so the avatar doesn't overlap */
+  .heroContent {
+    padding-top: 37px; /* ensures "Joshua Rizek" sits below the portrait */
+  }
+}

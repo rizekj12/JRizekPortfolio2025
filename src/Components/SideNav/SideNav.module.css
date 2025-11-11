@@ -1,0 +1,171 @@
+:root {
+  --grad-start: #6a11cb;
+  --grad-mid: #7f5af0;
+  --grad-end: #00bcd4;
+
+  --panel-bg: rgba(255, 255, 255, 0.14);
+  --panel-border: rgba(255, 255, 255, 0.28);
+  --panel-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  --text: #1f2937;
+  --text-muted: #5b6473;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --panel-bg: rgba(255, 255, 255, 0.12);
+    --panel-border: rgba(255, 255, 255, 0.22);
+    --panel-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    --text: #e8ecf3;
+    --text-muted: #c2c8d3;
+  }
+}
+
+.sideNav {
+  position: fixed;
+  left: 20px;
+  top: 14%;
+  transform: translateY(-50%);
+  z-index: 2000;
+  pointer-events: none; /* surface handles clicks */
+}
+
+@media (max-width: 820px) {
+  .sideNav {
+    display: none;
+  }
+}
+
+/* frosted panel so labels are readable on any bg */
+.surface {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: 6px 1fr;
+  gap: 12px;
+  padding: 14px 14px 14px 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  box-shadow: var(--panel-shadow);
+}
+
+/* vertical gradient rail */
+.rail {
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--grad-start),
+    var(--grad-mid),
+    var(--grad-end)
+  );
+  margin: 6px 2px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 28px auto;
+  align-items: center;
+  gap: 10px;
+}
+
+/* dot button */
+.dotBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: transform 0.18s ease;
+}
+.dotBtn:focus-visible {
+  outline: 2px solid #66e0c2;
+  outline-offset: 2px;
+}
+.dotBtn:hover {
+  transform: translateY(-1px);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #c7cbd6;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06) inset, 0 0 0 0 rgba(122, 90, 240, 0);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.dotBtn:hover .dot {
+  transform: scale(1.12);
+  background: #b5bccb;
+}
+
+/* active state: gradient fill + soft glow + ring */
+.active .dot {
+  background: linear-gradient(
+    45deg,
+    var(--grad-start),
+    var(--grad-mid),
+    var(--grad-end)
+  );
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85) inset,
+    0 0 10px 2px rgba(127, 90, 240, 0.45);
+  transform: scale(1.18);
+}
+
+/* labels */
+.labelBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--text);
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  text-align: left;
+  white-space: nowrap;
+}
+.labelBtn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+.activeLabel {
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--grad-start), var(--grad-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* coarse pointer = larger tap targets on touch laptops */
+@media (pointer: coarse) {
+  .item {
+    grid-template-columns: 32px auto;
+  }
+  .dotBtn {
+    width: 32px;
+    height: 32px;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+  }
+  .labelBtn {
+    font-size: 1rem;
+  }
+}
