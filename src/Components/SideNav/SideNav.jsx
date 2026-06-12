@@ -67,23 +67,15 @@ export default function SideNav() {
 
     return (
         <nav className={styles.sideNav} aria-label="Section navigation">
-            <div className={styles.surface}>
-                <div className={styles.rail} aria-hidden="true" />
+            <div className={`${styles.surface} ${active === "hero" ? styles.darkBg : ""}`}>
                 <ul className={styles.list}>
                     {SECTIONS.map(({ id, label }) => {
                         const isActive = active === id;
                         return (
                             <li key={id} className={styles.item}>
                                 <button
-                                    className={`${styles.dotBtn} ${isActive ? styles.active : ""}`}
-                                    aria-current={isActive ? "true" : "false"}
-                                    aria-label={`Go to ${label}`}
-                                    onClick={() => handleClick(id)}
-                                >
-                                    <span className={styles.dot} />
-                                </button>
-                                <button
                                     className={`${styles.labelBtn} ${isActive ? styles.activeLabel : ""}`}
+                                    aria-current={isActive ? "true" : "false"}
                                     onClick={() => handleClick(id)}
                                 >
                                     {label}

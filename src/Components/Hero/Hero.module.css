@@ -3,161 +3,69 @@
   height: 100vh;
   overflow: hidden;
 }
+
 .heroBg {
   position: absolute;
   inset: 0;
   background: url("/imgs/bg.jpg") center/cover no-repeat;
 }
-.heroContent {
+
+/* Single centered content block */
+.heroCenter {
   position: absolute;
   top: 50%;
-  left: 35%;
-  transform: translate(-50%, -60%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   z-index: 2;
+  width: min(90%, 620px);
+  padding: 32px 24px;
 }
+
+.portrait {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-md);
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
 .heroName {
   color: #fff;
   font-size: clamp(2rem, 6vw, 3.4rem);
   margin: 0 0 12px;
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
+
 .heroRoles {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
 }
+
 .heroRoles p {
   color: #fff;
   margin: 0;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-.divider {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 35%;
-  height: 100%;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 24px 24px;
-  z-index: 1;
-}
-.portrait {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
-  box-shadow: var(--shadow-md);
-  margin-bottom: 16px;
-}
-.heroIntro {
-  text-align: center;
-  max-width: 90%;
-  font-size: 1rem;
-  line-height: 1.6;
-  font-weight: 500;
-}
-.heroIcons {
-  display: flex;
-  gap: 18px;
-  margin-top: 18px;
-}
-.iconBtn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-sm);
-  color: #333;
-  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-}
-.iconBtn:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.fadeItem {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 420ms ease, transform 520ms ease;
-}
-.slideRight {
-  opacity: 0;
-  transform: translateX(8%);
-  transition: opacity 520ms ease, transform 680ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.inView .fadeItem {
-  opacity: 1;
-  transform: none;
-}
-.inView .slideRight {
-  opacity: 1;
-  transform: none;
-}
-.inView .portrait {
-  transition-delay: 120ms;
-}
-.inView .heroIntro {
-  transition-delay: 200ms;
-}
-.inView .heroIcons {
-  transition-delay: 280ms;
-}
-
-@media (max-width: 768px) {
-  .divider {
-    position: absolute;
-    bottom: 0;
-    top: auto;
-    width: 100%;
-    height: 45vh;
-    padding: calc(80px + 16px) 20px 32px;
-  }
-  .portrait {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 160px;
-    height: 160px;
-  }
-  .heroContent {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    width: 100%;
-    padding: 0 20px;
-  }
-}
-
+/* Stats row — flows inline within the centered column */
 .topStats {
-  position: absolute;
-  top: 16px; /* distance from top of white divider */
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
-  width: min(92%, 640px);
-  text-align: center;
-  z-index: 2;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .stat {
@@ -170,134 +78,42 @@
   font-weight: 800;
   font-size: 0.98rem;
   line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .statLabel {
   font-size: 0.82rem;
-  color: #4a4f58;
+  color: rgba(255, 255, 255, 0.75);
   margin-top: 2px;
 }
 
-/* small gradient dot between items */
 .sep {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(
-    45deg,
-    var(--grad-start),
-    var(--grad-mid),
-    var(--grad-end)
-  );
+  background: linear-gradient(45deg, var(--grad-start), var(--grad-mid), var(--grad-end));
   opacity: 0.9;
 }
 
-@media (max-width: 768px) {
-  .topStats {
-    top: 12px;
-    gap: 12px;
-    width: min(94%, 540px);
-  }
-  .statPrimary {
-    font-size: 0.95rem;
-  }
-  .statLabel {
-    font-size: 0.8rem;
-  }
+.heroIntro {
+  text-align: center;
+  max-width: 90%;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Contact info row --- */
-.contactRow {
-  margin-top: 12px;
+.heroIcons {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 18px;
 }
 
-.contactItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  color: #2a2f36;
-  text-decoration: none;
-  font-size: 0.92rem;
-  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.contactItem:hover {
-  background: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
-}
-
-.contactIcon {
-  width: 16px;
-  height: 16px;
-  display: block;
-  fill: currentColor; /* <- makes the SVG use the link color */
-}
-
-/* Make sure it looks clean on small screens */
-@media (max-width: 600px) {
-  .contactRow {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .contactItem {
-    font-size: 0.9rem;
-    width: 90%;
-    justify-content: center;
-  }
-}
-
-.contactItem {
-  color: #2a2f36;
-}
-.contactItem:hover {
-  color: #2a2f36;
-} /* keep text solid on hover */
-
-.contactItem:hover .contactIcon {
-  fill: url(#heroIconGrad); /* gradient only on the icon */
-}
-
-.socialBtn {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.socialBtn svg {
-  width: 18px;
-  height: 18px;
-  fill: #4c5563; /* default neutral icon */
-  transition: fill 0.3s ease;
-}
-
-.socialBtn:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.12);
-}
-
-/* Gradient icon on hover */
-.socialBtn:hover svg {
-  fill: url(#heroGrad);
-}
-
+/* Social buttons — glassmorphic for dark background */
 .socials {
   display: flex;
   align-items: center;
@@ -310,18 +126,19 @@
   height: 40px;
   display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease,
-    border-color 0.2s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 .socialBtn:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .socialSvg {
@@ -330,69 +147,118 @@
 }
 
 .iconPath {
-  fill: #4c5563;
+  fill: rgba(255, 255, 255, 0.9);
   transition: fill 0.3s ease;
 }
 
-/* Gradient on hover */
 .socialBtn:hover .iconPath {
   fill: url(#gradIcon);
 }
 
-.scrollButton svg {
-  fill: #000; /* black arrow */
+/* Contact row — glassmorphic for dark background */
+.contactRow {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Default: mobile portrait hidden on desktop/tablet */
-.portraitMobile {
-  display: none;
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-/* .portrait {
-  display: none;
-} */
-
-.heroContent {
-  position: relative;
-  padding-top: 180px; /* avatar (128) + border/shadow + gap ≈ 180 */
-  padding-bottom: 24px; /* give room before the divider */
-  text-align: center;
+.contactItem:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  color: #fff;
 }
 
-/* 2) Ensure divider starts lower so nothing overlaps */
-
-/* Optional: tighten name spacing if it still feels low */
-.heroName {
-  margin-top: 0;
+.contactIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: currentColor;
 }
 
-/* Mobile tweaks */
+.contactItem:hover .contactIcon {
+  fill: url(#heroIconGrad);
+}
+
+/* heroInner is the animatable child — keeps centering transform on heroCenter intact */
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Animations */
+.fadeItem {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 420ms ease, transform 520ms ease;
+}
+
+.inView .fadeItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.inView .portrait {
+  transition-delay: 120ms;
+}
+
+.inView .heroIntro {
+  transition-delay: 200ms;
+}
+
+.inView .heroIcons {
+  transition-delay: 280ms;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  /* Show the mobile portrait in the purple area and hide the divider portrait */
-  .portraitMobile {
-    display: block;
-    position: absolute;
-    top: 269px; /* was 18px */
-    left: 35%;
-    transform: translateX(-50%);
-    width: 128px; /* a touch smaller = more breathing room */
-    height: 128px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #fff;
-    box-shadow: var(--shadow-md);
-    z-index: 3;
-  }
-  /* Hide the portrait that sits inside the white divider on mobile */
-  .portrait {
-    display: none;
+  .heroCenter {
+    width: min(94%, 520px);
+    padding: 24px 16px;
   }
 
-  /* p {
-    margin-top: -23px;
-  } */
-  /* Give the name block space so the avatar doesn't overlap */
-  .heroContent {
-    padding-top: 37px; /* ensures "Joshua Rizek" sits below the portrait */
+  .portrait {
+    width: 130px;
+    height: 130px;
+  }
+
+  .topStats {
+    gap: 12px;
+  }
+
+  .statPrimary {
+    font-size: 0.95rem;
+  }
+
+  .statLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactItem {
+    font-size: 0.9rem;
+    width: 90%;
+    justify-content: center;
   }
 }

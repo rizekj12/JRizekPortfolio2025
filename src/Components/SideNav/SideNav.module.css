@@ -23,10 +23,10 @@
 .sideNav {
   position: fixed;
   left: 20px;
-  top: 14%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 2000;
-  pointer-events: none; /* surface handles clicks */
+  pointer-events: none;
 }
 
 @media (max-width: 820px) {
@@ -38,10 +38,10 @@
 /* frosted panel so labels are readable on any bg */
 .surface {
   pointer-events: auto;
-  display: grid;
-  grid-template-columns: 6px 1fr;
-  gap: 12px;
-  padding: 14px 14px 14px 12px;
+  padding: 16px 8px;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: var(--panel-bg);
@@ -50,80 +50,18 @@
   box-shadow: var(--panel-shadow);
 }
 
-/* vertical gradient rail */
-.rail {
-  width: 2px;
-  border-radius: 2px;
-  background: linear-gradient(
-    180deg,
-    var(--grad-start),
-    var(--grad-mid),
-    var(--grad-end)
-  );
-  margin: 6px 2px;
-}
-
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .item {
-  display: grid;
-  grid-template-columns: 28px auto;
-  align-items: center;
-  gap: 10px;
-}
-
-/* dot button */
-.dotBtn {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: transform 0.18s ease;
-}
-.dotBtn:focus-visible {
-  outline: 2px solid #66e0c2;
-  outline-offset: 2px;
-}
-.dotBtn:hover {
-  transform: translateY(-1px);
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: #c7cbd6;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.06) inset, 0 0 0 0 rgba(122, 90, 240, 0);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
-.dotBtn:hover .dot {
-  transform: scale(1.12);
-  background: #b5bccb;
-}
-
-/* active state: gradient fill + soft glow + ring */
-.active .dot {
-  background: linear-gradient(
-    45deg,
-    var(--grad-start),
-    var(--grad-mid),
-    var(--grad-end)
-  );
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85) inset,
-    0 0 10px 2px rgba(127, 90, 240, 0.45);
-  transform: scale(1.18);
+  display: flex;
 }
 
 /* labels */
@@ -131,15 +69,16 @@
   appearance: none;
   border: 0;
   background: transparent;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 10px;
   font-size: 0.95rem;
   color: var(--text);
   letter-spacing: 0.1px;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
+  width: 100%;
 }
 .labelBtn:hover {
   background: rgba(255, 255, 255, 0.28);
@@ -150,21 +89,33 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--grad-end);
 }
 
-/* coarse pointer = larger tap targets on touch laptops */
+/* When nav sits over the dark hero background, flip labels to white */
+.darkBg .labelBtn {
+  color: rgba(255, 255, 255, 0.75);
+}
+.darkBg .labelBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+.darkBg .activeLabel {
+  -webkit-text-fill-color: #fff;
+  color: #fff;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(255, 255, 255, 0.7);
+}
+
 @media (pointer: coarse) {
-  .item {
-    grid-template-columns: 32px auto;
-  }
-  .dotBtn {
-    width: 32px;
-    height: 32px;
-  }
-  .dot {
-    width: 14px;
-    height: 14px;
-  }
   .labelBtn {
     font-size: 1rem;
   }
