@@ -22,32 +22,35 @@
 
 .sideNav {
   position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2000;
   pointer-events: none;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 480px) {
   .sideNav {
-    display: none;
+    bottom: 16px;
+    width: calc(100% - 32px);
   }
 }
 
-/* frosted panel so labels are readable on any bg */
+/* liquid glass pill bar */
 .surface {
   pointer-events: auto;
-  padding: 16px 8px;
-  height: 88vh;
   display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
-  border-radius: 16px;
-  box-shadow: var(--panel-shadow);
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 2px;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .list {
@@ -55,9 +58,9 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
 }
 
 .item {
@@ -69,19 +72,19 @@
   appearance: none;
   border: 0;
   background: transparent;
-  padding: 4px 8px;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text);
   letter-spacing: 0.1px;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
   text-align: center;
   white-space: nowrap;
-  width: 100%;
 }
 .labelBtn:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.22);
 }
 .activeLabel {
   font-weight: 700;
@@ -93,6 +96,8 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 1.5px;
   text-decoration-color: var(--grad-end);
+  background-color: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
 }
 
 /* When nav sits over the dark hero background, flip labels to white */
